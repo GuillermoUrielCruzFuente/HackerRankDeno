@@ -49,7 +49,7 @@ const getSecondaryDiagonalIndices = (squareMatrixSize: number): Array<MatrixCoor
 
     for (let i = 0; i < squareMatrixSize; i++) {
         primaryDiagonal.push({
-            row: i, //ok
+            row: i,
             column: squareMatrixSize - 1 - i
         })
     }
