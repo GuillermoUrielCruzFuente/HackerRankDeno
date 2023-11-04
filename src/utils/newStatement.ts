@@ -47,53 +47,57 @@ const createStatementFileTree = (readableName: string) => {
 	const nextNumber = Number(lastStatement.name.split("-")?.[0]) + 1;
 
 	const bySpacesAndDashes = /[- ]+/;
-	const statementNameSegments = readableName
+	const nameSegments = readableName
 		.split(bySpacesAndDashes)
 		.map((nameSegment) => nameSegment.toLowerCase());
 
-	const kebabCaseName = [...statementNameSegments].join("-");
+	const kebabCaseName = [...nameSegments].join("-");
 
-	const pascalCaseName = [...statementNameSegments].map((nameSegment) => {
+	const pascalCaseName = [...nameSegments].map((nameSegment) => {
 		const [firstLetter, ...rest] = nameSegment;
 		return [firstLetter.toUpperCase(), ...rest].join("");
 	}).join("");
 
-	const camelCaseName = [...statementNameSegments].map((nameSegment, index) => {
-		if (index === 0) {
-			return nameSegment;
-		}
+	const camelCaseName = [...nameSegments].map(
+		(nameSegment, index) => {
+			if (index === 0) {
+				return nameSegment;
+			}
 
-		const [firstLetter, ...rest] = nameSegment;
-		return [firstLetter.toUpperCase(), ...rest].join("");
-	}).join("");
+			const [firstLetter, ...rest] = nameSegment;
+			return [firstLetter.toUpperCase(), ...rest].join("");
+		},
+	).join("");
 
-	statementNameSegments.unshift(nextNumber < 9 ? `0${nextNumber}` : nextNumber.toString());
+	nameSegments.unshift(
+		nextNumber < 9 ? `0${nextNumber}` : `${nextNumber}`,
+	);
 
-	const statementDirectory = "./src/statements/" + statementNameSegments.join("-");
+	const statementDir = `./src/statements/${nameSegments.join("-")}`;
 
-	Deno.mkdirSync(statementDirectory);
+	Deno.mkdirSync(statementDir);
 
 	// create kebab-case.data.json file
 	Deno.writeFileSync(
-		`${statementDirectory}/${kebabCaseName}.data.json`,
+		`${statementDir}/${kebabCaseName}.data.json`,
 		generateJSONDataTemplate(),
 	);
 
 	// Create kebab-case.md file
 	Deno.writeFileSync(
-		`${statementDirectory}/${kebabCaseName}.md`,
+		`${statementDir}/${kebabCaseName}.md`,
 		generateMDTemplate(readableName),
 	);
 
 	// Create PascalCase.ts
 	Deno.writeFileSync(
-		`${statementDirectory}/${pascalCaseName}.ts`,
+		`${statementDir}/${pascalCaseName}.ts`,
 		generateMainFileTemplate(camelCaseName),
 	);
 
-	// Create CamelCase.test.ts
+	// Create PascalCase.test.ts
 	Deno.writeFileSync(
-		`${statementDirectory}/${pascalCaseName}.test.ts`,
+		`${statementDir}/${pascalCaseName}.test.ts`,
 		generateTestFileTemplate(camelCaseName, pascalCaseName),
 	);
 };
