@@ -11,6 +11,10 @@ Every statement is at `src/statements/` directory, each of them must have:
 
 - statement-name.data.json
   - Must contains the necessary input an output data in order to test the code.
+  - Typing standards -> *.data.json must contains
+    - input: string of values of the same type separated by spaces
+    - output: - string of values of the same type separated by spaces - array of
+      values of the same type
 
 - statement-name.md
   - Must contain the statement description.
