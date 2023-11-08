@@ -1,11 +1,12 @@
-type MinMaxTuple = [number, number];
+export type MinMaxTuple = [number, number];
+export type DataTuple = [number, number, number, number, number];
 
-export const miniMaxSum = (arr: number[]): MinMaxTuple => {
+export const miniMaxSum = (array: DataTuple): MinMaxTuple => {
 	// ascendent -> from min to max
-	const sortedArr = arr.sort((a, b) => a - b);
+	const sortedArr = array.sort((a, b) => a - b);
 
 	const min = sortedArr
-		.filter((_, i) => i < arr.length - 1)
+		.filter((_, i) => i < array.length - 1)
 		.reduce((prev, curr) => prev + curr);
 
 	const max = sortedArr
