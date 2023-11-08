@@ -9,9 +9,18 @@ Deno.test("#miniMaxSum", () => {
 		expectedResults,
 	} = testDataParser<DataTuple, MinMaxTuple>(miniMaxSumData);
 
-	const computedResults = inputsToCompute.map((input) => miniMaxSum(input));
+	const computedResults = inputsToCompute.map((input, i) => {
+		const result = miniMaxSum(input);
+		const expected = expectedResults[i];
 
-	console.log({ inputsToCompute, computedResults, expectedResults });
+		console.log({
+			input,
+			result,
+			expected,
+		});
+
+		return result;
+	});
 
 	assertEquals(computedResults, expectedResults);
 });
