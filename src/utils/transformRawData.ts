@@ -1,29 +1,3 @@
-type JSONTestCaseData<T> = {
-	input: string;
-	output: T;
-};
-
-type TestDataReturn<T, J> = {
-	inputs: T[][];
-	expectedResults: J[];
-};
-
-export const typedParser = <SpaceSeparatedType, ExpectedType>(
-	{ data }: { data: JSONTestCaseData<ExpectedType>[] },
-): TestDataReturn<SpaceSeparatedType, ExpectedType> => {
-	const inputs: SpaceSeparatedType[][] = [];
-	const expectedResults: ExpectedType[] = [];
-
-	data.forEach((testCase) => {
-		const input = parseRawData<SpaceSeparatedType>(testCase.input);
-		inputs.push(input);
-
-		expectedResults.push(testCase.output as ExpectedType);
-	});
-
-	return { inputs, expectedResults };
-};
-
 /**
  * Parse the rawData that provides HackerRank platform, a string with
  * all the values separated with spaces
