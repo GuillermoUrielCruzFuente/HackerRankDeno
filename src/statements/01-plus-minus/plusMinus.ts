@@ -1,7 +1,7 @@
 /**
  * positive, negative, zero
  */
-type RatioFormattedTuple = [string, string, string];
+export type RatioFormattedTuple = [string, string, string];
 
 export const plusMinus = (array: number[]): RatioFormattedTuple => {
 	const { length } = array;
