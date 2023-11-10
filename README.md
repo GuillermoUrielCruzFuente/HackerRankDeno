@@ -38,10 +38,10 @@ type TestingDataBundle = {
 - statement-name.md
   - Must contain the statement description.
 
-- StatementName.test.ts
+- statementName.test.ts
   - Must contain the all the tests to the generated function.
 
-- StatementName.ts
+- statementName.ts
   - This file must contain the function definition and all its types.
 
 ## How to add a new statement
