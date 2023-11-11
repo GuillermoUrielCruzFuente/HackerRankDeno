@@ -57,12 +57,12 @@ of them will be added to the `src/statements/` directory
 
 ## How to test the code
 
-Test the statements with
+Test a specific statement with
 [Deno](https://docs.deno.com/runtime/manual/getting_started/installation) by
 running the following command:
 
 ```bash
-deno test src/StatementName.test.ts
+deno test src/nn-statement-name/statementName.test.ts
 ```
 
 or simply use the currently defined task `test`:
@@ -71,8 +71,8 @@ or simply use the currently defined task `test`:
 deno task test
 ```
 
-This command watchs for changes in all statements directory
-`src/statements/*/*.ts` TS files, and run all the existing tests.
+This command run all the tests in `src/statements/` directory and watches for
+changes through all the existing files.
 
 ## VSCode Deno extension
 
