@@ -27,3 +27,55 @@ export const parseRawData = <T>(rawData: string): T[] => {
 
 	return finalData;
 };
+
+type TestParsedData<ArgsType, ExpectedReturnType> = {
+	inputsToCompute: ArgsType[];
+	expectedResults: ExpectedReturnType[];
+};
+
+type TestCaseData = {
+	input: string;
+	output: unknown;
+};
+
+type TestingDataBundle = {
+	data: TestCaseData[];
+};
+
+export const testDataParser = <InputType, ExpectedReturnType>(
+	{ data }: TestingDataBundle,
+): TestParsedData<InputType, ExpectedReturnType> => {
+	const inputsToCompute: InputType[] = [];
+	const expectedResults: ExpectedReturnType[] = [];
+
+	for (const [i, { input, output }] of Object.entries(data)) {
+		if (typeof input !== "string") {
+			console.warn(
+				`not valid test case input, skipping testing bundle at index ${i}`,
+			);
+			break;
+		}
+
+		const parsedInput = parseRawData(input) as InputType;
+		inputsToCompute.push(parsedInput);
+
+		const outputType = typeof output;
+
+		switch (outputType) {
+			case "string": {
+				const parsedOutput = parseRawData(
+					output as string,
+				) as ExpectedReturnType;
+				expectedResults.push(parsedOutput);
+				break;
+			}
+
+			case "object": {
+				expectedResults.push(output as ExpectedReturnType);
+				break;
+			}
+		}
+	}
+
+	return { inputsToCompute, expectedResults };
+};
