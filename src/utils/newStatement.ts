@@ -25,9 +25,9 @@ export const ${functionName} = () => {};
 `.trimStart());
 
 // deno-fmt-ignore
-const generateTestFileTemplate = (functionName: string, fileName: string) => textEncoder.encode(`
+const generateTestFileTemplate = (functionName: string) => textEncoder.encode(`
 import { assertEquals } from "std/assert/mod.ts";
-import { ${functionName} } from "./${fileName}.ts";
+import { ${functionName} } from "./${functionName}.ts";
 
 Deno.test("#${functionName}", () => {});
 `.trimStart());
@@ -38,8 +38,8 @@ Deno.test("#${functionName}", () => {});
  * directory -> nn-statement-name
  * 	file -> kebab-case.data.json
  * 	file -> kebab-case.md
- * 	file -> PascalCase.test.ts
- * 	file -> PascalCase.ts
+ * 	file -> camelCase.test.ts
+ * 	file -> camelCase.ts
  */
 const createStatementFileTree = (readableName: string) => {
 	const currentStatementDirs = Array.from(Deno.readDirSync(STATEMENTS_PATH));
@@ -52,11 +52,6 @@ const createStatementFileTree = (readableName: string) => {
 		.map((nameSegment) => nameSegment.toLowerCase());
 
 	const kebabCaseName = [...nameSegments].join("-");
-
-	const pascalCaseName = [...nameSegments].map((nameSegment) => {
-		const [firstLetter, ...rest] = nameSegment;
-		return [firstLetter.toUpperCase(), ...rest].join("");
-	}).join("");
 
 	const camelCaseName = [...nameSegments].map(
 		(nameSegment, index) => {
@@ -73,7 +68,9 @@ const createStatementFileTree = (readableName: string) => {
 		nextNumber < 9 ? `0${nextNumber}` : `${nextNumber}`,
 	);
 
-	const statementDir = `./src/statements/${nameSegments.join("-")}`;
+	const folderName = nameSegments.join("-");
+
+	const statementDir = `./src/statements/${folderName}`;
 
 	Deno.mkdirSync(statementDir);
 
@@ -89,16 +86,16 @@ const createStatementFileTree = (readableName: string) => {
 		generateMDTemplate(readableName),
 	);
 
-	// Create PascalCase.ts
+	// Create camelCase.ts file
 	Deno.writeFileSync(
-		`${statementDir}/${pascalCaseName}.ts`,
+		`${statementDir}/${camelCaseName}.ts`,
 		generateMainFileTemplate(camelCaseName),
 	);
 
-	// Create PascalCase.test.ts
+	// Create camelCase.test.ts file
 	Deno.writeFileSync(
-		`${statementDir}/${pascalCaseName}.test.ts`,
-		generateTestFileTemplate(camelCaseName, pascalCaseName),
+		`${statementDir}/${camelCaseName}.test.ts`,
+		generateTestFileTemplate(camelCaseName),
 	);
 };
 
