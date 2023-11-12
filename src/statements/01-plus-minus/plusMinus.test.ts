@@ -9,14 +9,7 @@ Deno.test("#plusMinus", () => {
 		expectedResults,
 	} = testDataParser<number[], RatioFormattedTuple>(plusMinusData);
 
-	const computedResults = inputsToCompute.map((input, i) => {
-		const result = plusMinus(input);
-		const expected = expectedResults[i];
-
-		console.log({ input, result, expected });
-
-		return result;
-	});
+	const computedResults = inputsToCompute.map((input) => plusMinus(input));
 
 	assertEquals(computedResults, expectedResults);
 });
