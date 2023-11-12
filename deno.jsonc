@@ -1,21 +1,23 @@
 {
-  "imports": {
-    "std/": "https://deno.land/std@0.204.0/",
-    "utils/": "./src/utils/"
-  },
-  "tasks": {
-    "test" : "deno test --watch",
-    "new-statement": "deno run --allow-write --allow-read src/utils/newStatement.ts"
-  },
-  "fmt": {
-    "useTabs": true,
-    "lineWidth": 80,
-    "indentWidth": 4,
-    "semiColons": true,
-    "singleQuote": false,
-    "proseWrap": "always",
-    "include": [
-      "src/", "README.md"
-    ]
-  }
+	"imports": {
+		"std/": "https://deno.land/std@0.204.0/",
+		"utils/": "./src/utils/"
+	},
+	"tasks": {
+		"test": "deno test --watch",
+		"new-statement": "deno run --allow-write --allow-read src/utils/newStatement.ts"
+	},
+	"fmt": {
+		"useTabs": true,
+		"lineWidth": 80,
+		"indentWidth": 4,
+		"semiColons": true,
+		"singleQuote": false,
+		"proseWrap": "always",
+		"include": [
+			"src/",
+			"README.md",
+			"deno.jsonc"
+		]
+	}
 }
