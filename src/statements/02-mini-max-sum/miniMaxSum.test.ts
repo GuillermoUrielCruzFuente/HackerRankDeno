@@ -1,7 +1,7 @@
 import { assertEquals } from "std/assert/mod.ts";
 import { type DataTuple, miniMaxSum, type MinMaxTuple } from "./miniMaxSum.ts";
 import miniMaxSumData from "./mini-max-sum.data.json" with { type: "json" };
-import { testDataParser } from "../../utils/transformRawData.ts";
+import { testDataParser } from "utils/transformRawData.ts";
 
 Deno.test("#miniMaxSum", () => {
 	const {
