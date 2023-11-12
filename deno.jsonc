@@ -1,6 +1,7 @@
 {
   "imports": {
-    "std/": "https://deno.land/std@0.204.0/"
+    "std/": "https://deno.land/std@0.204.0/",
+    "utils/": "./src/utils/"
   },
   "tasks": {
     "test" : "deno test --watch",
