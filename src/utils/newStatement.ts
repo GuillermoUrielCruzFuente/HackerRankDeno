@@ -25,11 +25,22 @@ export const ${functionName} = () => {};
 `.trimStart());
 
 // deno-fmt-ignore
-const generateTestFileTemplate = (functionName: string) => textEncoder.encode(`
+const generateTestFileTemplate = (functionName: string, testingData: string) => textEncoder.encode(`
 import { assertEquals } from "std/assert/mod.ts";
+import { testDataParser } from "utils/transformRawData.ts";
+import ${functionName}Data from "./${testingData}.data.json" with { type: "json" };
 import { ${functionName} } from "./${functionName}.ts";
 
-Deno.test("#${functionName}", () => {});
+Deno.test("#${functionName}", () => {
+	const {
+		inputsToCompute,
+		expectedResults,
+	} = testDataParser<T, G>(${functionName}Data);
+
+	const computedResults = inputsToCompute.map((input) => ${functionName}(input));
+
+	assertEquals(computedResults, expectedResults);
+});
 `.trimStart());
 
 /**
@@ -95,7 +106,7 @@ const createStatementFileTree = (readableName: string) => {
 	// Create camelCase.test.ts file
 	Deno.writeFileSync(
 		`${statementDir}/${camelCaseName}.test.ts`,
-		generateTestFileTemplate(camelCaseName),
+		generateTestFileTemplate(camelCaseName, kebabCaseName),
 	);
 };
 
