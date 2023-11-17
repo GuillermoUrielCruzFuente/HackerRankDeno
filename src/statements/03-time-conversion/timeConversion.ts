@@ -1,3 +1,7 @@
+/**
+ * @param time time in 12-hour AM/PM format "hh:mm:ssAM" | "hh:mm:ssPM"
+ * @returns military (24-hour) time
+ */
 export const timeConversion = (time: string) => {
 	const hoursStr = time.slice(0, 2);
 	const hours = parseInt(hoursStr);
