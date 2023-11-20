@@ -32,10 +32,11 @@ const verifyNameStructure = (name?: string) => {
 	return name.length > 0;
 };
 
-const isValidName = verifyNameStructure(statementReadableName!);
+const isValidName = verifyNameStructure(readableName);
 
 if (isValidName) {
-	createStatementFileTree(statementReadableName!);
+	const templater = new StatementTemplater(readableName);
+	templater.generateScaffold();
 } else {
 	console.log("%cEmpty name: no new statement was generated!", "color: red");
 }
