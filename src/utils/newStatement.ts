@@ -2,22 +2,29 @@ import { StatementTemplater } from "utils/templates/Templater.ts";
 
 console.clear();
 
-console.log(
-	"%c- Readable format, include spaces and dashes",
-	"color: red; font-weight: bold",
-);
+const messages = [
+	{
+		content: "- Readable format, include spaces and dashes",
+		color: "red",
+	},
+	{
+		content: "- An empty name will abort this action",
+		color: "red",
+	},
+	{
+		content: "Statement name:",
+		color: "chartreuse",
+	},
+];
 
-console.log(
-	"%c- An empty name will abort this action",
-	"color: red; font-weight: bold",
-);
+messages.forEach((message) => {
+	console.log(
+		`%c${message.content}`,
+		`color: ${message.color}; font-weight: bold`,
+	);
+});
 
-console.log(
-	"%cStatement name:",
-	"color: chartreuse; font-weight: bold",
-);
-
-const statementReadableName = prompt("", "");
+const readableName = prompt("", "")!;
 
 const verifyNameStructure = (name?: string) => {
 	if (!name) return false;
