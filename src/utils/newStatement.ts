@@ -24,7 +24,7 @@ messages.forEach((message) => {
 	);
 });
 
-const readableName = prompt("", "")!;
+const name = prompt("", "")!;
 
 const verifyNameStructure = (name?: string) => {
 	if (!name) return false;
@@ -32,10 +32,10 @@ const verifyNameStructure = (name?: string) => {
 	return name.length > 0;
 };
 
-const isValidName = verifyNameStructure(readableName);
+const isValidName = verifyNameStructure(name);
 
 if (isValidName) {
-	const templater = new StatementTemplater(readableName);
+	const templater = new StatementTemplater({ name });
 	templater.generateScaffold();
 } else {
 	console.log("%cEmpty name: no new statement was generated!", "color: red");
