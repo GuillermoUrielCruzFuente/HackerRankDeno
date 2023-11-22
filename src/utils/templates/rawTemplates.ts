@@ -1,11 +1,5 @@
 import { NameAdapter } from "utils/NameAdapter.ts";
-
-export interface RawTemplates {
-	generateJsonDataTemplate: () => string;
-	generateMDTemplate: (name: NameAdapter) => string;
-	generateTestTemplate: (name: NameAdapter) => string;
-	generateFuncTemplate: (name: NameAdapter) => string;
-}
+import { type RawTemplates } from "utils/templates/StatementScaffolder.ts";
 
 /**
  * @returns testing data bundle string template
