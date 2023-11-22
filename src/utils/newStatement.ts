@@ -1,4 +1,4 @@
-import { StatementTemplater } from "utils/templates/Templater.ts";
+import { StatementScaffolder } from "utils/templates/StatementScaffolder.ts";
 
 console.clear();
 
@@ -35,8 +35,7 @@ const verifyNameStructure = (name?: string) => {
 const isValidName = verifyNameStructure(name);
 
 if (isValidName) {
-	const templater = new StatementTemplater({ name });
-	templater.generateScaffold();
+	new StatementScaffolder({ name }).generateScaffold();
 } else {
 	console.log("%cEmpty name: no new statement was generated!", "color: red");
 }
