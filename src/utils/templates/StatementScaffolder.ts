@@ -55,66 +55,63 @@ export class StatementScaffolder {
 
 	generateScaffold() {
 		this.#createDirectory();
-
-		this.#generateDataFile();
-		this.#generateDescriptionFile();
-		this.#generateTestingFile();
-		this.#generateFunctionFile();
+		this.#generateFiles();
 	}
 
 	#createDirectory() {
 		Deno.mkdirSync(this.#statementDirectory);
 	}
 
-	#generateDataFile() {
-		Deno.writeFileSync(
-			`${this.#statementDirectory}/${this.#name.kebabCase}.data.json`,
-			this.#jsonDataEncoded,
-		);
+	#generateFiles() {
+		for (const { path, rawTemplate } of this.#scaffoldFiles) {
+			const fullPath = this.#statementDirectory + path;
+			const encodedTemplate = this.#encoder.encode(rawTemplate);
+
+			Deno.writeFileSync(fullPath, encodedTemplate);
+		}
 	}
 
-	get #jsonDataEncoded() {
-		return this.#encoder.encode(
-			this.#rawTemplates.generateJsonDataTemplate(),
-		);
+	get #scaffoldFiles() {
+		const {
+			generateJsonDataTemplate,
+			generateFuncTemplate,
+			generateMDTemplate,
+			generateTestTemplate,
+		} = this.#rawTemplates;
+
+		return [
+			{
+				path: this.#dataFilePath,
+				rawTemplate: generateJsonDataTemplate(),
+			},
+			{
+				path: this.#descriptionFilePath,
+				rawTemplate: generateMDTemplate(this.#name),
+			},
+			{
+				path: this.#testingFilePath,
+				rawTemplate: generateTestTemplate(this.#name),
+			},
+			{
+				path: this.#functionFilePath,
+				rawTemplate: generateFuncTemplate(this.#name),
+			},
+		];
 	}
 
-	#generateDescriptionFile() {
-		Deno.writeFileSync(
-			`${this.#statementDirectory}/${this.#name.kebabCase}.md`,
-			this.#descriptionFileEncoded,
-		);
+	get #dataFilePath() {
+		return `/${this.#name.kebabCase}.data.json`;
 	}
 
-	get #descriptionFileEncoded() {
-		return this.#encoder.encode(
-			this.#rawTemplates.generateMDTemplate(this.#name),
-		);
+	get #descriptionFilePath() {
+		return `/${this.#name.kebabCase}.md`;
 	}
 
-	#generateTestingFile() {
-		Deno.writeFileSync(
-			`${this.#statementDirectory}/${this.#name.camelCase}.test.ts`,
-			this.#testingFileEncoded,
-		);
+	get #testingFilePath() {
+		return `/${this.#name.camelCase}.test.ts`;
 	}
 
-	get #testingFileEncoded() {
-		return this.#encoder.encode(
-			this.#rawTemplates.generateTestTemplate(this.#name),
-		);
-	}
-
-	#generateFunctionFile() {
-		Deno.writeFileSync(
-			`${this.#statementDirectory}/${this.#name.camelCase}.ts`,
-			this.#functionFileEncoded,
-		);
-	}
-
-	get #functionFileEncoded() {
-		return this.#encoder.encode(
-			this.#rawTemplates.generateFuncTemplate(this.#name),
-		);
+	get #functionFilePath() {
+		return `/${this.#name.camelCase}.ts`;
 	}
 }
