@@ -1,21 +1,15 @@
-export type TestCaseData = {
-	input: string;
-	output: string | string[] | number[];
-};
-
-export type TestingDataBundle = {
-	data: TestCaseData[];
-};
-
-export const logTestingData = <T>(
-	computedResults: T[],
-	testBundle: TestingDataBundle,
+export const logTestingData = (
+	{ inputs, computed, expected }: {
+		inputs: unknown[];
+		computed: unknown[];
+		expected: unknown[];
+	},
 ) => {
-	computedResults.forEach((result, i) => {
-		const testCase = testBundle.data[i];
-		const input = testCase.input;
-		const expected = testCase.output;
-
-		console.log({ input, result, expected });
+	computed.forEach((result, i) => {
+		console.log({
+			input: inputs[i],
+			result,
+			expected: expected[i],
+		});
 	});
 };
