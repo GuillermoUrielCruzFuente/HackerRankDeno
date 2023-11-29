@@ -1,8 +1,44 @@
 {
 	"data": [
 		{
-			"input": "",
-			"output": ""
+			"input": "S;V;iPad",
+			"output": "i pad"
+		},
+		{
+			"input": "C;M;mouse pad",
+			"output": "mousePad()"
+		},
+		{
+			"input": "C;C;code swarm",
+			"output": "CodeSwarm"
+		},
+		{
+			"input": "S;C;OrangeHighlighter",
+			"output": "orange highlighter"
+		},
+		{
+			"input": "S;M;plasticCup()",
+			"output": "plastic cup"
+		},
+		{
+			"input": "C;V;mobile phone",
+			"output": "mobilePhone"
+		},
+		{
+			"input": "C;C;coffee machine",
+			"output": "CoffeeMachine"
+		},
+		{
+			"input": "S;C;LargeSoftwareBook",
+			"output": "large software book"
+		},
+		{
+			"input": "C;M;white sheet of paper",
+			"output": "whiteSheetOfPaper()"
+		},
+		{
+			"input": "S;V;pictureFrame",
+			"output": "picture frame"
 		}
 	]
 }
