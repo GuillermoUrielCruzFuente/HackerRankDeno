@@ -4,9 +4,13 @@
 		"utils/": "./src/utils/"
 	},
 	"tasks": {
+		// testing tasks
 		"test": "deno test src/statements --watch",
-		"new-statement": "deno run --allow-read --allow-write src/utils/newStatement.ts",
-		"test-scaffolder": "deno test --allow-read --allow-write src/utils/templates/StatementScaffolder.test.ts"
+		"test:utils": "deno test src/utils/utils.test.ts --watch",
+		"test:scaffolder": "deno test --allow-read --allow-write src/utils/templates/StatementScaffolder.test.ts",
+
+		// automation tasks
+		"new-statement": "deno run --allow-read --allow-write src/utils/newStatement.ts"
 	},
 	"fmt": {
 		"useTabs": true,
