@@ -1,4 +1,5 @@
 import { StatementScaffolder } from "utils/templates/StatementScaffolder.ts";
+import { validateName } from "utils/validateName.ts";
 
 console.clear();
 
@@ -26,16 +27,20 @@ messages.forEach((message) => {
 
 const name = prompt("", "")!;
 
-const verifyNameStructure = (name?: string) => {
-	if (!name) return false;
-
-	return name.length > 0;
-};
-
-const isValidName = verifyNameStructure(name);
+const isValidName = validateName(name);
 
 if (isValidName) {
 	new StatementScaffolder({ name }).generateScaffold();
 } else {
-	console.log("%cEmpty name: no new statement was generated!", "color: red");
+	const errorReason = name.length === 0 ? "Empty name" : "Not valid name";
+
+	console.log(
+		"%cName must be at least 5 alphanumeric chars length and optionally spaces and dashes",
+		"color: yellow; font-weight: bold;",
+	);
+
+	console.log(
+		`%cNo new statement was generated, reason -> [ ${errorReason} ]`,
+		"color: red; font-weight: bold;",
+	);
 }
