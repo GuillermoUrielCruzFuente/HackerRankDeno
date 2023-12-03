@@ -22,15 +22,15 @@ export class NameAdapter {
 	}
 
 	get pascalCase() {
-		return this.#lowerCaseNameSegments.map((segment) =>
-			this.#capitalize(segment)
-		).join("");
+		return this.#lowerCaseNameSegments
+			.map((segment) => this.#capitalize(segment))
+			.join("");
 	}
 
 	get capitalizedSentence() {
-		return this.#lowerCaseNameSegments.map((segment) =>
-			this.#capitalize(segment)
-		).join(" ");
+		return this.#lowerCaseNameSegments
+			.map((segment) => this.#capitalize(segment))
+			.join(" ");
 	}
 
 	get #lowerCaseNameSegments() {
@@ -47,7 +47,7 @@ export class NameAdapter {
 
 		return word.replace(
 			searchFirstLetter,
-			(letter) => letter.toUpperCase(),
+			(firstLetter) => firstLetter.toUpperCase(),
 		);
 	}
 }
