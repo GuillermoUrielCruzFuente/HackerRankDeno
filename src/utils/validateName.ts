@@ -1,12 +1,10 @@
 export const validateName = (name: string) => {
-	const trimmedName = name.trim().replace(/\s+/g, " ");
-
 	// This regular expression checks for at
 	// least 5 alphanumeric characters and
-	// allows for optional spaces and dashes
-	const regex = /^([a-zA-Z0-9][-\s]*){5,}$/;
+	// allows for optional internal spaces and dashes
+	const regex = /^([a-zA-Z0-9][-\s]*){4,}[a-zA-Z0-9]$/;
 
-	return regex.test(trimmedName);
+	return regex.test(name);
 };
 
 /**
