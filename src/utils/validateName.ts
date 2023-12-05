@@ -8,7 +8,7 @@ export const validateName = (name: string) => {
 };
 
 /**
- * Trim and reduce all repeated spaces to only one
+ * Trim and reduce all repeated blank spaces to only one
  * @param sentence
  */
 export const removeExtraSpaces = (sentence: string) => {
