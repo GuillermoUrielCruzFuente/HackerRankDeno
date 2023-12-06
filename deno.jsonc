@@ -6,7 +6,7 @@
 	"tasks": {
 		// testing tasks
 		"test": "deno test src/statements --watch",
-		"test:utils": "deno test src/utils/utils.test.ts --watch",
+		"test:utils": "deno test src/utils/test/utils.test.ts --watch",
 		"test:scaffolder": "deno test --allow-read --allow-write src/utils/templates/StatementScaffolder.test.ts",
 
 		// automation tasks
