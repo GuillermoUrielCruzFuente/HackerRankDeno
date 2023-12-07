@@ -44,6 +44,7 @@ type TestingDataBundle = {
 
 export const testDataParser = <InputType, ExpectedReturnType>(
 	{ data }: TestingDataBundle,
+	{ inputAsArray, outputAsArray } = { inputAsArray: true, outputAsArray: true },
 ): TestParsedData<InputType, ExpectedReturnType> => {
 	const inputsToCompute: InputType[] = [];
 	const expectedResults: ExpectedReturnType[] = [];
