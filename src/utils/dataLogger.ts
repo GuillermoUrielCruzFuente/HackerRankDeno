@@ -1,15 +1,15 @@
 export const logTestingData = (
-	{ inputs, computed, expected }: {
-		inputs: unknown[];
-		computed: unknown[];
-		expected: unknown[];
+	{ inputsToCompute, computedResults, expectedResults }: {
+		inputsToCompute: unknown[];
+		computedResults: unknown[];
+		expectedResults: unknown[];
 	},
 ) => {
-	computed.forEach((result, i) => {
+	computedResults.forEach((computed, i) => {
 		console.log({
-			input: inputs[i],
-			result,
-			expected: expected[i],
+			input: inputsToCompute[i],
+			computed,
+			expected: expectedResults[i],
 		});
 	});
 };
