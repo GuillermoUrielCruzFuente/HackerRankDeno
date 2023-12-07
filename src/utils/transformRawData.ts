@@ -51,9 +51,7 @@ export const testDataParser = <InputType, ExpectedReturnType>(
 
 	for (const [i, { input, output }] of Object.entries(data)) {
 		if (typeof input !== "string") {
-			console.warn(
-				`not valid test case input, skipping testing bundle at index ${i}`,
-			);
+			console.warn(`not valid test case input, skipping testing bundle at index ${i}`);
 			break;
 		}
 
@@ -63,7 +61,7 @@ export const testDataParser = <InputType, ExpectedReturnType>(
 
 		inputsToCompute.push(parsedInput);
 
-		switch (outputType) {
+		switch (typeof output) {
 			case "string": {
 				const parsedOutput = (
 					outputAsArray ? parseRawData(output as string) : output
