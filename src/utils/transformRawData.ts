@@ -57,16 +57,18 @@ export const testDataParser = <InputType, ExpectedReturnType>(
 			break;
 		}
 
-		const parsedInput = parseRawData(input) as InputType;
-		inputsToCompute.push(parsedInput);
+		const parsedInput = (
+			inputAsArray ? parseRawData(input) : input
+		) as InputType;
 
-		const outputType = typeof output;
+		inputsToCompute.push(parsedInput);
 
 		switch (outputType) {
 			case "string": {
-				const parsedOutput = parseRawData(
-					output as string,
+				const parsedOutput = (
+					outputAsArray ? parseRawData(output as string) : output
 				) as ExpectedReturnType;
+
 				expectedResults.push(parsedOutput);
 				break;
 			}
