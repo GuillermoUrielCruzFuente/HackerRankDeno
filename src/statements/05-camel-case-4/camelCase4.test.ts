@@ -7,7 +7,10 @@ Deno.test("#camelCase4", () => {
 	const {
 		inputsToCompute,
 		expectedResults,
-	} = testDataParser<T, G>(testingBundle);
+	} = testDataParser<string, string>(testingBundle, {
+		inputAsArray: false,
+		outputAsArray: false,
+	});
 
 	const computedResults = inputsToCompute.map((input) => camelCase4(input));
 
