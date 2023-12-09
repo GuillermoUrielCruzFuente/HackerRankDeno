@@ -1,7 +1,26 @@
 export const camelCase4 = (instruction: string) => {
-	const config = instructionAdapter(instruction);
+	const data = instructionAdapter(instruction);
 
-	return "WIP";
+	const textSegments = getSegments(data);
+
+	switch (data.transformation) {
+		case "class": {
+			break;
+		}
+		case "method": {
+			break;
+		}
+		case "variable": {
+			break;
+		}
+	}
+
+	return "";
+};
+
+const getSegments = ({ operation, text }: StringOperation) => {
+	if (operation === "split") return splitByCapitalLetters(text);
+	return splitBySpaces(text);
 };
 
 type StringOperation = {
