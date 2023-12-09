@@ -43,3 +43,11 @@ const instructionAdapter = (instruction: string) => {
 		text: rawConfig[2],
 	} as StringOperation;
 };
+
+const splitByCapitalLetters = (text: string) => {
+	return text.split(/(?=[A-Z])/);
+};
+
+const splitBySpaces = (text: string) => {
+	return text.split(/\s/);
+};
