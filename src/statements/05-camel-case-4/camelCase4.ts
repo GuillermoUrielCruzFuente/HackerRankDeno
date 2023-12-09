@@ -1,18 +1,16 @@
 export const camelCase4 = (instruction: string) => {
 	const data = instructionAdapter(instruction);
-
-	const textSegments = getSegments(data);
+	const textDivision = getSegments(data);
 
 	switch (data.transformation) {
-		case "class": {
-			break;
-		}
-		case "method": {
-			break;
-		}
-		case "variable": {
-			break;
-		}
+		case "class":
+			return processClass(textDivision);
+
+		case "method":
+			return processMethod(textDivision);
+
+		case "variable":
+			return processVariable(textDivision);
 	}
 
 	return "";
