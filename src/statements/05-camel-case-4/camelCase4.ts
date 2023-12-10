@@ -1,3 +1,13 @@
+type StringOperation = {
+	operation: "split" | "combine";
+	transformation: "method" | "class" | "variable";
+	text: string;
+};
+
+type SegmentsData = ReturnType<typeof getSegments>;
+
+type Action = (segments: string[]) => string;
+
 export const camelCase4 = (instruction: string) => {
 	const data = instructionAdapter(instruction);
 	const textDivision = getSegments(data);
