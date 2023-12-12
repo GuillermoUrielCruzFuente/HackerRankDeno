@@ -4,6 +4,10 @@ type StringOperation = {
 	text: string;
 };
 
+type SegmenterDictionary = {
+	[op in StringOperation["operation"]]: (text: string) => string[];
+};
+
 type SegmentsData = ReturnType<typeof getSegments>;
 
 type Action = (segments: string[]) => string;
