@@ -22,8 +22,6 @@ export const camelCase4 = (instruction: string) => {
 		case "variable":
 			return processVariable(textDivision);
 	}
-
-	return "";
 };
 
 const getSegments = ({ operation, text }: StringOperation) => {
