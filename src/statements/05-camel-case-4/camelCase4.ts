@@ -61,3 +61,12 @@ const splitByCapitalLetters = (text: string) => {
 const splitBySpaces = (text: string) => {
 	return text.split(/\s/);
 };
+
+const capitalize = (word: string) => {
+	const searchFirstLetter = /^\w/;
+
+	return word.replace(
+		searchFirstLetter,
+		(firstLetter) => firstLetter.toUpperCase(),
+	);
+};
