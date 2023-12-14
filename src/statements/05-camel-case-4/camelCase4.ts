@@ -29,14 +29,86 @@ export const camelCase4 = (instruction: string) => {
 };
 
 const getSegments = ({ operation, text }: StringOperation) => {
-	if (operation === "split") return splitByCapitalLetters(text);
-	return splitBySpaces(text);
+	const dictionary: SegmenterDictionary = {
+		split: splitByCapitalLetters,
+		combine: splitBySpaces,
+	};
+
+	return { segments: dictionary[operation](text), operation };
 };
 
-type StringOperation = {
-	operation: "split" | "combine";
-	transformation: "method" | "class" | "variable";
-	text: string;
+const processClass = ({ segments, operation }: SegmentsData) => {
+	switch (operation) {
+		case "split":
+			return splitClass(segments);
+		case "combine":
+			return combineClass(segments);
+	}
+};
+
+const splitClass: Action = (segments) =>
+	segments
+		.map((s) => s.toLowerCase())
+		.join(" ");
+
+const combineClass: Action = (segments) =>
+	segments
+		.map((s) => capitalize(s))
+		.join("");
+
+const processMethod = ({ segments, operation }: SegmentsData) => {
+	switch (operation) {
+		case "split":
+			return splitMethod(segments);
+		case "combine":
+			return combineMethod(segments);
+	}
+};
+
+const splitMethod: Action = (segments) => {
+	const firstWord = segments.shift()!;
+
+	const innerWords = segments.map((s) => s.toLowerCase());
+
+	const lastWordWithNoParenthesis = innerWords
+		.pop()!
+		.replace("()", "");
+
+	return [firstWord, ...innerWords, lastWordWithNoParenthesis].join(" ");
+};
+
+const combineMethod: Action = (segments) => {
+	const firstWord = segments.shift() ?? "";
+
+	return firstWord + segments
+		.map((s) => capitalize(s))
+		.join("")
+		.concat("()");
+};
+
+const processVariable = ({ segments, operation }: SegmentsData) => {
+	switch (operation) {
+		case "split":
+			return splitVariable(segments);
+		case "combine":
+			return combineVariable(segments);
+	}
+};
+
+const splitVariable: Action = (segments) => {
+	const firstWord = segments.shift() ?? "";
+
+	return [
+		firstWord,
+		...segments.map((s) => s.toLowerCase()),
+	].join(" ");
+};
+
+const combineVariable: Action = (segments) => {
+	const firstWord = segments.shift() ?? "";
+
+	return firstWord + segments
+		.map((segment) => capitalize(segment)).join("");
 };
 
 const instructionAdapter = (instruction: string) => {
