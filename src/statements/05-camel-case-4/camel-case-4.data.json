@@ -39,6 +39,10 @@
 		{
 			"input": "S;V;pictureFrame",
 			"output": "picture frame"
+		},
+		{
+			"input": "S;V;picture",
+			"output": "picture"
 		}
 	]
 }
