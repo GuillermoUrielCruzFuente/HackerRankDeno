@@ -50,16 +50,20 @@ export const testDataParser = <InputType, ExpectedReturnType>(
 	const expectedResults: ExpectedReturnType[] = [];
 
 	for (const [i, { input, output }] of Object.entries(data)) {
-		if (typeof input !== "string") {
-			console.warn(`not valid test case input, skipping testing bundle at index ${i}`);
-			break;
+		switch (typeof input) {
+			case "string": {
+				const parsedInput = (inputAsArray ? parseRawData(input) : input) as InputType;
+				inputsToCompute.push(parsedInput);
+
+				break;
+			}
+
+			case "object": {
+				inputsToCompute.push(input);
+
+				break;
+			}
 		}
-
-		const parsedInput = (
-			inputAsArray ? parseRawData(input) : input
-		) as InputType;
-
-		inputsToCompute.push(parsedInput);
 
 		switch (typeof output) {
 			case "string": {
