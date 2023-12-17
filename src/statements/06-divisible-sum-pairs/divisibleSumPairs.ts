@@ -4,5 +4,15 @@ export type SumPairsInput = {
 };
 
 export const divisibleSumPairs = ({ numbers, k }: SumPairsInput) => {
-	return numbers[0] + k;
+	let counter = 0;
+
+	for (let i = 0; i < numbers.length; i++) {
+		for (let j = 0; j < numbers.length; j++) {
+			if (i < j && (((numbers[i] + numbers[j]) % k) === 0)) {
+				counter++;
+			}
+		}
+	}
+
+	return counter;
 };
