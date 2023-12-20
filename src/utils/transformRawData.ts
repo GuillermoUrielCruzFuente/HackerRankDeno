@@ -74,7 +74,7 @@ export const testDataParser = <InputType, ExpectedReturnType>(
 				expectedResults.push(parsedOutput);
 				break;
 			}
-
+			case "number":
 			case "object": {
 				expectedResults.push(output as ExpectedReturnType);
 				break;
