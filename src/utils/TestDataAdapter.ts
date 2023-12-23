@@ -5,7 +5,7 @@ type AdapterConfig = {
 	outputAsArray?: boolean;
 };
 
-type DataSetType = "compact" | "ready";
+type DataSetType = "compact-string" | "compact-number" | "ready";
 
 type TestCaseData<T, E> = {
 	input: T;
