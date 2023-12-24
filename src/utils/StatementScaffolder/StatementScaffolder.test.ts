@@ -1,4 +1,4 @@
-import { StatementScaffolder } from "utils/templates/StatementScaffolder.ts";
+import { StatementScaffolder } from "./StatementScaffolder.ts";
 import { assertEquals } from "std/assert/mod.ts";
 
 Deno.test("Should create the first statement with '01' number prefix", () => {

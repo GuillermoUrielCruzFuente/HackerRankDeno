@@ -1,5 +1,5 @@
 import { NameAdapter } from "utils/NameAdapter.ts";
-import { defaultRawTemplates } from "utils/templates/rawTemplates.ts";
+import { defaultRawTemplates } from "./rawTemplates.ts";
 
 export interface RawTemplates {
 	generateJsonDataTemplate: () => string;
