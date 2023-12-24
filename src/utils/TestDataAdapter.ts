@@ -26,8 +26,11 @@ export class TestDataAdapter<InputType, ExpectedType> {
 		this.outputType = outputType;
 	}
 
-	private transformRawData(rawData: string) {
-		const strData = rawData.split(" ");
+	private transformRawStringData(rawData: string) {
+		return rawData.split(" ");
+	}
+
+	private transformRawNumberData(rawData: string) {
 		const finalData = [];
 
 		for (const str of strData) {
