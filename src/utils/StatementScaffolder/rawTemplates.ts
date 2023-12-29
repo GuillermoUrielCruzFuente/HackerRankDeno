@@ -1,5 +1,5 @@
 import { NameAdapter } from "utils/NameAdapter.ts";
-import { type RawTemplates } from "./StatementScaffolder.ts";
+import { type RawTemplates } from "utils/StatementScaffolder/StatementScaffolder.ts";
 
 /**
  * @returns testing data bundle string template
