@@ -1,4 +1,4 @@
-import { StatementScaffolder } from "utils/templates/StatementScaffolder.ts";
+import { StatementScaffolder } from "utils/StatementScaffolder/StatementScaffolder.ts";
 import { validateName } from "utils/validateName.ts";
 
 console.clear();
