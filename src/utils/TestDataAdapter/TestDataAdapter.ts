@@ -4,13 +4,24 @@ type Ready = "ready";
 
 type DataSetType = CompactString | CompactNumber | Ready;
 
-type DataConfig = {
-	inputType: DataSetType;
-	outputType: DataSetType;
-};
-
 type Data = {
 	data: unknown[];
+};
+
+type InputCaseData = {
+	input: string;
+};
+
+type InputReadyCaseData<T> = {
+	input: T;
+};
+
+type OutputCaseData = {
+	output: string;
+};
+
+type OutputReadyCaseData<T> = {
+	output: T;
 };
 
 export class TestDataAdapter {
