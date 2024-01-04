@@ -25,7 +25,5 @@ type OutputReadyCaseData<T> = {
 };
 
 export class TestDataAdapter {
-	private readonly inputType: DataSetType;
-	private readonly outputType: DataSetType;
 	private readonly data: unknown[];
 }
