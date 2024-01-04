@@ -1,4 +1,6 @@
 import { TestDataAdapter } from "utils/TestDataAdapter/TestDataAdapter.ts";
+import testData from "./TestDataAdapter.data.json" with { type: "json" };
+import { assertEquals } from "std/assert/mod.ts";
 
 Deno.test("TestDataAdapter", () => {
 	const testingDataBundle = {
