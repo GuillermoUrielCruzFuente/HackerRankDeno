@@ -1,15 +1,14 @@
 import { assertEquals } from "std/assert/mod.ts";
 import { plusMinus, type RatioFormattedTuple } from "./plusMinus.ts";
-import { testDataParser } from "utils/transformRawData.ts";
+import { TestDataAdapter } from "utils/TestDataAdapter/TestDataAdapter.ts";
 import plusMinusData from "./plus-minus.data.json" with { type: "json" };
 
 Deno.test("#plusMinus", () => {
-	const {
-		inputsToCompute,
-		expectedResults,
-	} = testDataParser<number[], RatioFormattedTuple>(plusMinusData);
+	const dataAdapter = new TestDataAdapter(plusMinusData);
 
-	const computedResults = inputsToCompute.map((input) => plusMinus(input));
+	const computedResults = dataAdapter
+		.getInputs("compact-number")
+		.map((input) => plusMinus(input));
 
-	assertEquals(computedResults, expectedResults);
+	assertEquals(computedResults, dataAdapter.getExpectedResults<RatioFormattedTuple>("ready"));
 });
