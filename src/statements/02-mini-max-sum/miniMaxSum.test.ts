@@ -1,15 +1,14 @@
 import { assertEquals } from "std/assert/mod.ts";
-import { type DataTuple, miniMaxSum, type MinMaxTuple } from "./miniMaxSum.ts";
+import { miniMaxSum } from "./miniMaxSum.ts";
 import miniMaxSumData from "./mini-max-sum.data.json" with { type: "json" };
-import { testDataParser } from "utils/transformRawData.ts";
+import { TestDataAdapter } from "utils/TestDataAdapter/TestDataAdapter.ts";
 
 Deno.test("#miniMaxSum", () => {
-	const {
-		inputsToCompute,
-		expectedResults,
-	} = testDataParser<DataTuple, MinMaxTuple>(miniMaxSumData);
+	const dataAdapter = new TestDataAdapter(miniMaxSumData);
 
-	const computedResults = inputsToCompute.map((input) => miniMaxSum(input));
+	const computedResults = dataAdapter
+		.getInputs("compact-number")
+		.map((input) => miniMaxSum(input));
 
-	assertEquals(computedResults, expectedResults);
+	assertEquals(computedResults, dataAdapter.getExpectedResults("compact-number"));
 });
