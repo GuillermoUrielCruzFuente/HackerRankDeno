@@ -1,15 +1,14 @@
 import { assertEquals } from "std/assert/mod.ts";
-import { testDataParser } from "utils/transformRawData.ts";
+import { TestDataAdapter } from "utils/TestDataAdapter/TestDataAdapter.ts";
 import testingBundle from "./sparse-arrays.data.json" with { type: "json" };
 import { sparseArrays } from "./sparseArrays.ts";
 
 Deno.test("#sparseArrays", () => {
-	const {
-		inputsToCompute,
-		expectedResults,
-	} = testDataParser<T, G>(testingBundle);
+	const testAdapter = new TestDataAdapter(testingBundle);
 
-	const computedResults = inputsToCompute.map((input) => sparseArrays(input));
+	const computedResults = testAdapter
+		.getInputs<{ strings: string; queries: string }>("ready")
+		.map((input) => sparseArrays(input));
 
-	assertEquals(computedResults, expectedResults);
+	assertEquals(computedResults, testAdapter.getExpectedResults<number[]>("ready"));
 });
