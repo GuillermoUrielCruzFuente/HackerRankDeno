@@ -2,22 +2,59 @@
 	"data": [
 		{
 			"input": {
-				"strings": "aba baba aba xzxb",
-				"queries": "aba xzxb ab"
+				"strings": [
+					"aba",
+					"baba",
+					"aba",
+					"xzxb"
+				],
+				"queries": [
+					"aba",
+					"xzxb",
+					"ab"
+				]
 			},
 			"output": [2, 1, 0]
 		},
 		{
 			"input": {
-				"strings": "def de fgh",
-				"queries": "de lmn fgh"
+				"strings": [
+					"def",
+					"de",
+					"fgh"
+				],
+				"queries": [
+					"de",
+					"lmn",
+					"fgh"
+				]
 			},
 			"output": [1, 0, 1]
 		},
 		{
 			"input": {
-				"strings": "abcde sdaklfj asdjf na basdn sdaklfj asdjf na asdjf na basdn sdaklfj asdjf",
-				"queries": "abcde sdaklfj asdjf na basdn"
+				"strings": [
+					"abcde",
+					"sdaklfj",
+					"asdjf",
+					"na",
+					"basdn",
+					"sdaklfj",
+					"asdjf",
+					"na",
+					"asdjf",
+					"na",
+					"basdn",
+					"sdaklfj",
+					"asdjf"
+				],
+				"queries": [
+					"abcde",
+					"sdaklfj",
+					"asdjf",
+					"na",
+					"basdn"
+				]
 			},
 			"output": [1, 3, 4, 3, 2]
 		}
