@@ -1,15 +1,14 @@
 import { assertEquals } from "std/assert/mod.ts";
-import { testDataParser } from "utils/transformRawData.ts";
 import testingBundle from "./divisible-sum-pairs.data.json" with { type: "json" };
 import { divisibleSumPairs, type SumPairsInput } from "./divisibleSumPairs.ts";
+import { TestDataAdapter } from "utils/TestDataAdapter/TestDataAdapter.ts";
 
 Deno.test("#divisibleSumPairs", () => {
-	const {
-		inputsToCompute,
-		expectedResults,
-	} = testDataParser<SumPairsInput, number>(testingBundle);
+	const adapter = new TestDataAdapter(testingBundle);
 
-	const computedResults = inputsToCompute.map((input) => divisibleSumPairs(input));
+	const computedResults = adapter
+		.getInputs<SumPairsInput>("ready")
+		.map((input) => divisibleSumPairs(input));
 
-	assertEquals(computedResults, expectedResults);
+	assertEquals(computedResults, adapter.getExpectedResults("ready"));
 });
