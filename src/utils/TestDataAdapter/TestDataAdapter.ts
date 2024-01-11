@@ -43,7 +43,7 @@ export class TestDataAdapter {
 	 * @param rawData string
 	 * @returns array of numbers (integers or floats)
 	 */
-	transformRawNumberData(rawData: string) {
+	private transformRawNumberData(rawData: string) {
 		const finalData = [];
 
 		for (const str of rawData.split(" ")) {
