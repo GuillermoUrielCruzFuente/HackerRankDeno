@@ -12,7 +12,7 @@ const repetitionsInStringArray = (wordArray: string[]): ConcurrencyTableItem => 
 	return dictionary;
 };
 
-type SparseArraysArgs = {
+export type SparseArraysArgs = {
 	strings: string[];
 	queries: string[];
 };
