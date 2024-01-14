@@ -33,7 +33,7 @@ export class StatementScaffolder {
 
 	#computeFolderName() {
 		const next = this.#getLastStatementNumber() + 1;
-		const nPrefix = next < 9 ? `0${next}` : next;
+		const nPrefix = next <= 9 ? `0${next}` : next;
 		return `${nPrefix}-${this.#name.kebabCase}`;
 	}
 
