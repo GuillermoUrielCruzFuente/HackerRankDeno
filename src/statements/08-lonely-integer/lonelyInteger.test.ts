@@ -1,15 +1,14 @@
 import { assertEquals } from "std/assert/mod.ts";
-import { testDataParser } from "utils/transformRawData.ts";
 import testingBundle from "./lonely-integer.data.json" with { type: "json" };
 import { lonelyInteger } from "./lonelyInteger.ts";
+import { TestDataAdapter } from "utils/TestDataAdapter/TestDataAdapter.ts";
 
 Deno.test("#lonelyInteger", () => {
-	const {
-		inputsToCompute,
-		expectedResults,
-	} = testDataParser<T, G>(testingBundle);
+	const adapter = new TestDataAdapter(testingBundle);
 
-	const computedResults = inputsToCompute.map((input) => lonelyInteger(input));
+	const computedResults = adapter
+		.getInputs("compact-number")
+		.map((input) => lonelyInteger(input));
 
-	assertEquals(computedResults, expectedResults);
+	assertEquals(computedResults, adapter.getExpectedResults("ready"));
 });
