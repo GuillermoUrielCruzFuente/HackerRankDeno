@@ -27,19 +27,18 @@ const generateMDTemplate = (name: NameAdapter) => (`
  */
 const generateTestTemplate = (name: NameAdapter) => (`
 import { assertEquals } from "std/assert/mod.ts";
-import { testDataParser } from "utils/transformRawData.ts";
+import { TestDataAdapter } from "utils/TestDataAdapter/TestDataAdapter.ts";
 import testingBundle from "./${name.kebabCase}.data.json" with { type: "json" };
 import { ${name.camelCase} } from "./${name.camelCase}.ts";
 
 Deno.test("#${name.camelCase}", () => {
-	const {
-		inputsToCompute,
-		expectedResults,
-	} = testDataParser<T, G>(testingBundle);
+	const adapter = new TestDataAdapter(testingBundle);
 
-	const computedResults = inputsToCompute.map((input) => ${name.camelCase}(input));
+	const computedResults = adapter
+		.getInputs("")
+		.map((input) => ${name.camelCase}(input));
 
-	assertEquals(computedResults, expectedResults);
+	assertEquals(computedResults, adapter.getExpectedResults(""));
 });
 `.trimStart());
 
