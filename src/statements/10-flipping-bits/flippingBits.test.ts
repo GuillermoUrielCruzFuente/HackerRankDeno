@@ -7,8 +7,8 @@ Deno.test("#flippingBits", () => {
 	const adapter = new TestDataAdapter(testingBundle);
 
 	const computedResults = adapter
-		.getInputs("")
+		.getInputs<number>("ready")
 		.map((input) => flippingBits(input));
 
-	assertEquals(computedResults, adapter.getExpectedResults(""));
+	assertEquals(computedResults, adapter.getExpectedResults("ready"));
 });
