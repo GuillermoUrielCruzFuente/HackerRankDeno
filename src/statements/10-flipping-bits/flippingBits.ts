@@ -44,3 +44,13 @@ export const createBinaryString = (nMask: number) => {
 
 	return sMask;
 };
+
+const convertBinaryToNumber = (binary: string): number => {
+	let value = 0;
+	for (let index = 0; index < binary.length; index++) {
+		const digit = binary[index] === "0" ? 0 : 1;
+		value += Math.pow(2, binary.length - 1 - index) * digit;
+	}
+
+	return value;
+};
