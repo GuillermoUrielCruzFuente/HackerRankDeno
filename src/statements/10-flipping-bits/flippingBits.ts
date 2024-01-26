@@ -1,13 +1,26 @@
 export const flippingBits = (n: number): number => {
 	const binary = convertNumberToBinary(n);
 
-	let invertedBinary = "";
-	for (let index = 0; index < binary.length; index++) {
-		const letter = binary[index];
-		letter === "1" ? invertedBinary += "0" : invertedBinary += "1";
-	}
+	const invertedBinary = invertBinary(binary);
 
 	return convertBinaryToNumber(invertedBinary);
+};
+
+/**
+ * Toggle every binary digit
+ * @example "1010" -> "0101"
+ * @param binary string representation
+ * @returns inverted binary string
+ */
+export const invertBinary = (binary: string) => {
+	let invertedBinary = "";
+
+	for (let i = 0; i < binary.length; i++) {
+		if (binary[i] === "1") invertedBinary += "0";
+		else invertedBinary += "1";
+	}
+
+	return invertedBinary;
 };
 
 export const convertNumberToBinary = (n: number, bits = 32): string => {
