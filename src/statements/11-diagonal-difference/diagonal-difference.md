@@ -5,7 +5,12 @@ Given a square matrix, calculate the absolute difference between the sums of its
 For example, the square matrix `arr` is shown below:
 
 ```ts
-[1, 2, 3, 4, 5, 6, 9, 8, 9];
+// deno-fmt-ignore
+const arr = [
+    [ 1, 2, 3 ]
+    [ 4, 5, 6 ]
+    [ 9, 8, 9 ]
+];
 ```
 
 The left-to-right diagonal = `1 + 5 + 9 = 15`. The right to left diagonal = `3 + 5 + 9 = 17`. Their
