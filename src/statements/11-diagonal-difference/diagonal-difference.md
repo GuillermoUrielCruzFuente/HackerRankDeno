@@ -7,9 +7,9 @@ For example, the square matrix `arr` is shown below:
 ```ts
 // deno-fmt-ignore
 const arr = [
-    [ 1, 2, 3 ]
-    [ 4, 5, 6 ]
-    [ 9, 8, 9 ]
+    [ 1, 2, 3 ],
+    [ 4, 5, 6 ],
+    [ 9, 8, 9 ],
 ];
 ```
 
