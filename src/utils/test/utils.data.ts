@@ -26,6 +26,9 @@ export const names = [
 	{ input: "detail -oriented stuff", expected: false },
 	{ input: "detail - oriented stuff", expected: false },
 	{ input: "detailoriented- stuff", expected: false },
+	{ input: "Counting Sort 1", expected: true },
+	{ input: "Counting Sort 1123", expected: true },
+	{ input: "1 Counting Sort", expected: true },
 ];
 
 export const extraHyphens = [
