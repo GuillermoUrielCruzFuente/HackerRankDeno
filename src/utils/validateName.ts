@@ -1,9 +1,12 @@
-export const validateName = (name: string) => {
-	// This regular expression checks for at least 5
-	// alphanumeric characters and allows for single
-	// optional internal spaces and hyphens
-	const regex = /^([a-zA-Z0-9]([- ]?[a-zA-Z0-9])*){4,}[a-zA-Z0-9]$/;
-
+/**
+ * Checks for at least 5 alphanumeric characters and allows for
+ * single optional internal spaces and hyphens
+ *
+ * @param name string to validate
+ * @returns whether the current name is valid or not
+ */
+export const validateName = (name: string): boolean => {
+	const regex = /^([a-zA-Z0-9]([- ]?[a-zA-Z0-9])*){5,}$/;
 	return regex.test(name);
 };
 
