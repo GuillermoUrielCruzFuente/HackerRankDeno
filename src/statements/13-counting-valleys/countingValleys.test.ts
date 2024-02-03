@@ -7,8 +7,8 @@ Deno.test("#countingValleys", () => {
 	const adapter = new TestDataAdapter(testingBundle);
 
 	const computedResults = adapter
-		.getInputs("")
+		.getInputs<string>("ready")
 		.map((input) => countingValleys(input));
 
-	assertEquals(computedResults, adapter.getExpectedResults(""));
+	assertEquals(computedResults, adapter.getExpectedResults("ready"));
 });
