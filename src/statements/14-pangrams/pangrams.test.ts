@@ -7,8 +7,8 @@ Deno.test("#pangrams", () => {
 	const adapter = new TestDataAdapter(testingBundle);
 
 	const computedResults = adapter
-		.getInputs("")
+		.getInputs<string>("ready")
 		.map((input) => pangrams(input));
 
-	assertEquals(computedResults, adapter.getExpectedResults(""));
+	assertEquals(computedResults, adapter.getExpectedResults("ready"));
 });
