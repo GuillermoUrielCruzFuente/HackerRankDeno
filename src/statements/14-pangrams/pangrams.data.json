@@ -1,8 +1,16 @@
 {
 	"data": [
 		{
-			"input": "",
-			"output": ""
+			"input": "We promptly judged antique ivory buckles for the next prize",
+			"output": "pangram"
+		},
+		{
+			"input": "We promptly judged antique ivory buckles for the prize",
+			"output": "not pangram"
+		},
+		{
+			"input": "NOVmETKPTbYu ftZPEykhjgF GGkdGjWGwW skjPJsea dtwdqcr DERCUgxOxrRgDQbdzL IZjyXs",
+			"output": "pangram"
 		}
 	]
 }
