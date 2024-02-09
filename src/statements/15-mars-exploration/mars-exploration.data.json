@@ -1,8 +1,16 @@
 {
 	"data": [
 		{
-			"input": "",
-			"output": ""
+			"input": "SOSSPSSQSSOR",
+			"output": 3
+		},
+		{
+			"input": "SOSSOT",
+			"output": 1
+		},
+		{
+			"input": "SOSSOSSOS",
+			"output": 0
 		}
 	]
 }
