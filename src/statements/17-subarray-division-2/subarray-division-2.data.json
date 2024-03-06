@@ -1,8 +1,28 @@
 {
 	"data": [
 		{
-			"input": "",
-			"output": ""
+			"input": {
+				"chocolateBar": [1, 2, 1, 3, 2],
+				"birthDay": 3,
+				"birthMonth": 2
+			},
+			"output": 2
+		},
+		{
+			"input": {
+				"chocolateBar": [1, 1, 1, 1, 1, 1],
+				"birthDay": 3,
+				"birthMonth": 2
+			},
+			"output": 0
+		},
+		{
+			"input": {
+				"chocolateBar": [4],
+				"birthDay": 4,
+				"birthMonth": 1
+			},
+			"output": 1
 		}
 	]
 }
