@@ -105,6 +105,56 @@ extension
 A TypeScript file that contains the exported statement function and all its types. Must be named
 following the camelCase standard.
 
+## How to prepare your testing data bundle?
+
+There are a lot of cases to cover while working with the platform provided testing data, sometimes
+you get a large string of numbers separated with spaces, sometimes you get an object with different
+keys and values.
+
+In order to make the parse data collection and testing processes easier, I prepared certain tools
+described as follows.
+
+### TestDataAdapter class
+
+This can handle the conversion of that space-separated strings and return a typed array, simply use
+like this:
+
+```ts
+import { assertEquals } from "std/assert/mod.ts";
+import { TestDataAdapter } from "utils/TestDataAdapter/TestDataAdapter.ts";
+import testingBundle from "./permuting-two-arrays.data.json" with { type: "json" };
+
+Deno.test("#test", () => {
+	// create the adapter instance
+	const adapter = new TestDataAdapter(testingBundle);
+
+	// every time you get a space-separated string you can use this config
+	// in order to parse the data
+	const inputs = adapter.getInputs("compact-string"); // infered return as string[]
+	const inputs = adapter.getInputs("compact-number"); // infered return as number[]
+
+	// and for that more specific structures you can prepare the data
+	// directly in json file and simply pass to the function
+	const inputs = adapter.getInputs<InputType>("ready"); // infered return as InputType[]
+
+	// then you can get the expected results and use them to compare to
+	// computed results
+	const expected = adapter.getExpectedResults<ExpectedReturnType>("ready");
+
+	const computedResults = inputs.map((input) => testFunction(input));
+
+	assertEquals(computedResults, adapter.getExpectedResults<ExpectedReturnType>("ready"));
+});
+```
+
+### process-string Deno task
+
+In case you get a complex object you can use this Deno task in order to parse a string and transform
+it into an array, automatically copy to clipboard and finally paste it into the *.data.json file
+
+> for linux, make sure to run this command `sudo apt-get install xsel` before use the
+> `process-string` deno task
+
 ## How to add a new statement
 
 Add a new statement to the project by running the following command:
