@@ -1,1 +1,3 @@
-export const salesByMatch = () => {};
+export const salesByMatch = (socks: number[]): number => {
+	return 0;
+};
