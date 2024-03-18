@@ -186,7 +186,7 @@ deno task test
 ```
 
 This command run all the tests in `src/statements/` directory and watches for changes through all
-the existing files.
+the existing files, reloading only your current working statement.
 
 ## VSCode Deno extension
 
