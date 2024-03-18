@@ -7,8 +7,8 @@ Deno.test("#salesByMatch", () => {
 	const adapter = new TestDataAdapter(testingBundle);
 
 	const computedResults = adapter
-		.getInputs("")
+		.getInputs("compact-number")
 		.map((input) => salesByMatch(input));
 
-	assertEquals(computedResults, adapter.getExpectedResults(""));
+	assertEquals(computedResults, adapter.getExpectedResults("ready"));
 });
