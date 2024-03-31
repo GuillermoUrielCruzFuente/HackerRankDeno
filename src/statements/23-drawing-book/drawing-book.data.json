@@ -1,8 +1,18 @@
 {
 	"data": [
 		{
-			"input": "",
-			"output": ""
+			"input": {
+				"numberOfPages": 5,
+				"desiredPage": 4
+			},
+			"output": 0
+		},
+		{
+			"input": {
+				"numberOfPages": 6,
+				"desiredPage": 2
+			},
+			"output": 1
 		}
 	]
 }
