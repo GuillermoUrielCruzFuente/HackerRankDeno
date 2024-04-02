@@ -7,6 +7,9 @@ export const maximumPerimeterTriangle = (sticks: number[]): number[] => {
 	// next stick until find a valid combination.
 	sticks.sort((a, b) => b - a);
 
+	/**
+	 * @see {@link https://www.quora.com/How-do-I-determine-if-three-side-lengths-are-a-triangle}
+	 */
 	const isTriangle = (a: number, b: number, c: number) => {
 		return (-a + b + c) * (a - b + c) * (a + b - c) > 0;
 	};
